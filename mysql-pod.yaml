@@ -14,11 +14,10 @@ spec:
         name: db-config
     - secretRef:
         name: db-secret
-    resources: {}
+    ports:
+    - containerPort: 3306 # Expose port inside the container
   dnsPolicy: ClusterFirst
   restartPolicy: Always
-status: {}
-
 
 ---
 
@@ -30,6 +29,6 @@ spec:
   selector:
     run: mysql-pod
   ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
