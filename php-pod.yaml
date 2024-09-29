@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: php-admin-pod
+  name: php-admin-pod
+spec:
+  containers:
+  - image: phpmyadmin
+    name: php-admin-pod
+    envFrom:
+    - configMapRef:
+        name: php-admin-config
+    - secretRef:
+        name: php-admin-secret
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-php-service
+spec:
+  type: NodePort
+  selector:
+    run: php-admin-pod
+  ports:
+  - protocol: TCP
+    port: 8099
+    targetPort: 80

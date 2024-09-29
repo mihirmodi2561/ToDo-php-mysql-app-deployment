@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: php-admin-config
+data:
+  # property-like keys; each key maps to a simple value
+  PMA_HOST:
+  PMA_PORT: 
+
+
+# Next step create secret for phpadmin
